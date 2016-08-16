@@ -2,18 +2,17 @@ package algol.csltd.com.ua;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.log4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringTest {
+    private static Log log = LogFactory.getLog(SpringTest.class);
 
     public static void main(String[] args) {
-
-        Log log = LogFactory.getLog(SpringTest.class);
-        log.info("JCL logging...");
-        Logger l = Logger.getLogger(SpringTest.class);
-        l.info("Log4j logging...");
-        org.slf4j.Logger ll = LoggerFactory.getLogger(SpringTest.class);
-        ll.info("SLF4J logging...");
+        log.info("initializing context");
+        ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
+        log.info("getting bean");
+        Object obj = context.getBean("petStore");
+        log.info("Object created by bean petStore");
     }
 }
