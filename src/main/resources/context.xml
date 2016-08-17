@@ -2,9 +2,76 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-       <!-- services -->
-       <bean id="petStore" class="algol.csltd.com.ua.SimpleSample">
-              <!-- additional collaborators and configuration for this bean go here -->
+       <!--Two beans from one class instantiated with default constructor -->
+       <bean id="simpleBean1" class="algol.csltd.com.ua.simpleBeans.SimpleBean" />
+       <bean id="simpleBean2" class="algol.csltd.com.ua.simpleBeans.SimpleBean">
+              <property name="adminEmails">
+                     <props>
+                            <prop key="administrator">administrator@example.org</prop>
+                            <prop key="support">support@example.org</prop>
+                            <prop key="development">development@example.org</prop>
+                     </props>
+              </property>
+              <!-- results in a setSomeList(java.util.List) call -->
+              <property name="someList">
+                     <list>
+                            <value>a list element followed by a reference</value>
+                            <ref bean="simpleBean1" />
+                     </list>
+              </property>
+              <!-- results in a setSomeMap(java.util.Map) call -->
+              <property name="someMap">
+                     <map>
+                            <entry key="an entry" value="just some string"/>
+                            <entry key ="a ref" value-ref="simpleBean1"/>
+                     </map>
+              </property>
+              <!-- results in a setSomeSet(java.util.Set) call -->
+              <property name="someSet">
+                     <set>
+                            <value>just some string</value>
+                            <ref bean="simpleBean1" />
+                     </set>
+              </property>
        </bean>
-       <!-- more bean definitions for services go here -->
+       <!-- Bean, instantioated with constructor with argument -->
+       <bean id="instantiatingWithConstructorBean" class="algol.csltd.com.ua.instantiation.InstantiatingWithConstructorBean">
+              <constructor-arg name="s" type="java.lang.String" value="Hello World"/>
+       </bean>
+       <!--Beans, instantiated with static factory-->
+       <bean id="instantiationWithStaticFactoryMethod" class="algol.csltd.com.ua.instantiation.InstantiationWithStaticFactoryMethod" factory-method="createInstance"/>
+       <bean id="arrayList" class="algol.csltd.com.ua.instantiation.InstantiationWithStaticFactoryMethod" factory-method="createArrayList"/>
+       <!-- Beans, instantiated using instance factory -->
+       <bean id="serviceLocator" class="algol.csltd.com.ua.instantiation.DefaultServiceLocator"/>
+       <bean id="simpleBeanInstance" factory-bean="serviceLocator" factory-method="createSimpleBeanInstance"/>
+       <bean id="sampleParentBeanInstance" factory-bean="serviceLocator" factory-method="createSampleParentBean"/>
+       <bean id="sampleString" factory-bean="serviceLocator" factory-method="createSampleString"/>
+       <!-- Setter-based dependency inhection -->
+       <bean id="exampleBean" class="algol.csltd.com.ua.dependencies.ExampleBean">
+              <!-- setter injection using the nested ref element -->
+              <property name="beanOne">
+                     <ref bean="anotherExampleBean"/>
+              </property>
+              <!-- setter injection using the neater ref attribute -->
+              <property name="beanTwo" ref="yetAnotherBean"/>
+              <property name="integerProperty" value="1"/>
+       </bean>
+       <bean id="anotherExampleBean" class="algol.csltd.com.ua.dependencies.AnotherBean"/>
+       <bean id="yetAnotherBean" class="algol.csltd.com.ua.dependencies.YetAnotherBean"/>
+       <!--Combination of setter-based and constructor-based dependencies injection-->
+       <bean id="exampleBean2" class="algol.csltd.com.ua.dependencies.ExampleBean">
+              <constructor-arg name="beanOne" ref="anotherExampleBean"/>
+              <constructor-arg name="integerProperty" value="123"/>
+              <!--Inner bean-->
+              <property name="beanTwo">
+                     <bean class="algol.csltd.com.ua.dependencies.YetAnotherBean"/>
+              </property>
+       </bean>
+       <!--Another example of constructor based injection for static factory instntiation-->
+       <bean id="exampleBean3" class="algol.csltd.com.ua.dependencies.ExampleBean" factory-method="createInstance">
+              <constructor-arg ref="anotherExampleBean"/>
+              <constructor-arg ref="yetAnotherBean"/>
+              <constructor-arg value="123"/>
+       </bean>
+
 </beans>

@@ -11,8 +11,5 @@ public class SpringTest {
     public static void main(String[] args) {
         log.info("initializing context");
         ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
-        log.info("getting bean");
-        Object obj = context.getBean("petStore");
-        log.info("Object created by bean petStore");
     }
 }
