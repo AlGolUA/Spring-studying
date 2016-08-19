@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       <!-- example beans -->
+       <bean id="anotherExampleBean" class="algol.csltd.com.ua.dependencies.AnotherBean"/>
+       <bean id="yetAnotherBean" class="algol.csltd.com.ua.dependencies.YetAnotherBean"/>
+       <!-- Setter-based dependency inhection -->
+       <bean id="exampleBean" class="algol.csltd.com.ua.dependencies.ExampleBean">
+              <!-- setter injection using the nested ref element -->
+              <property name="beanOne">
+                     <ref bean="anotherExampleBean"/>
+              </property>
+              <!-- setter injection using the neater ref attribute -->
+              <property name="beanTwo" ref="yetAnotherBean"/>
+              <property name="integerProperty" value="1"/>
+       </bean>
+       <!-- The same bean, but properties are defined through p namespace -->
+       <bean id="p-exampleBean" class="algol.csltd.com.ua.dependencies.ExampleBean" p:beanOne-ref="anotherExampleBean" p:beanTwo-ref="yetAnotherBean" p:integerProperty="123"/>
+       <!--Combination of setter-based and constructor-based dependencies injection-->
+       <bean id="exampleBean2" class="algol.csltd.com.ua.dependencies.ExampleBean">
+              <constructor-arg name="beanOne" ref="anotherExampleBean"/>
+              <constructor-arg name="integerProperty" value="123"/>
+              <property name="beanTwo">
+                     <!--Inner bean (independent on yetAnotherBean) -->
+                     <bean class="algol.csltd.com.ua.dependencies.YetAnotherBean"/>
+              </property>
+       </bean>
+       <!-- Similar bean with constructor arguments throw c namespace -->
+       <bean id="с-exampleBean" class="algol.csltd.com.ua.dependencies.ExampleBean" c:beanOne-ref="anotherExampleBean" c:integerProperty="123" p:beanTwo-ref="yetAnotherBean"/>
+       <!--Another example of constructor based injection for static factory instntiation-->
+       <bean id="exampleBean3" class="algol.csltd.com.ua.dependencies.ExampleBean" factory-method="createInstance">
+              <constructor-arg ref="anotherExampleBean"/>
+              <constructor-arg ref="yetAnotherBean"/>
+              <constructor-arg value="123"/>
+       </bean>
+       <bean id="serviceLocator" class="algol.csltd.com.ua.instantiation.DefaultServiceLocator"/>
+       <bean factory-bean="logBean" factory-method="logMessage">
+              <constructor-arg name="message" value="Another serviceLocator bean initialized..."/>
+       </bean>
+       <bean class="algol.csltd.com.ua.simpleBeans.LogBean" factory-method="logMessage2">
+              <constructor-arg name="message" value="Another serviceLocator bean initialized..."/>
+       </bean>
+
+</beans>

@@ -8,14 +8,10 @@ import java.util.ArrayList;
  * Created by alik on 17.08.2016.
  */
 public class InstantiationWithStaticFactoryMethod extends SampleParent {
-    static {
-        log.debug("static in InstantiationWithStaticFactoryMethod");
-    }
     private static InstantiationWithStaticFactoryMethod instance = new InstantiationWithStaticFactoryMethod();
 
     private InstantiationWithStaticFactoryMethod() {
-        log.debug("constructor private in InstantiationWithStaticFactoryMethod");
-
+        super();
     }
 
     public static InstantiationWithStaticFactoryMethod createInstance() {

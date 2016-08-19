@@ -5,25 +5,18 @@ import algol.csltd.com.ua.simpleBeans.SampleParent;
 /**
  * Created by alik on 17.08.2016.
  */
+
 public class ExampleBean extends SampleParent {
     private AnotherBean beanOne;
     private YetAnotherBean beanTwo;
     private Integer integerProperty;
 
-    static {
-        log.debug("static in ExampleBean");
-    }
-
-    {
-        log.debug("initialization in ExampleBean for " + this.getClass().getSimpleName());
-    }
-
     public ExampleBean() {
-        log.debug("constructor in ExampleBean for " + this.getClass().getSimpleName());
+        super();
     }
 
     public ExampleBean(AnotherBean beanOne, Integer integerProperty) {
-        log.debug("constructor in ExampleBean for " + this.getClass().getSimpleName() + " with arguments: " + beanOne + ", " + integerProperty);
+        super();
         this.beanOne = beanOne;
         this.integerProperty = integerProperty;
     }
@@ -33,7 +26,7 @@ public class ExampleBean extends SampleParent {
     }
 
     public void setBeanOne(AnotherBean beanOne) {
-        log.debug("setBeanOne " + beanOne);
+        log.debug(String.format("setBeanOne(%s)", beanOne));
         this.beanOne = beanOne;
     }
 
@@ -42,7 +35,7 @@ public class ExampleBean extends SampleParent {
     }
 
     public void setBeanTwo(YetAnotherBean beanTwo) {
-        log.debug("setBeanTwo " + beanTwo);
+        log.debug(String.format("setBeanTwo(%s)", beanTwo));
         this.beanTwo = beanTwo;
     }
 
@@ -51,7 +44,7 @@ public class ExampleBean extends SampleParent {
     }
 
     public void setIntegerProperty(Integer integerProperty) {
-        log.debug("setIntegerProperty");
+        log.debug(String.format("setIntegerProperty(%s)", integerProperty));
         this.integerProperty = integerProperty;
     }
 
