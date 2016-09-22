@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       xmlns:c="http://www.springframework.org/schema/c">
 
+       <bean id="logBean" class="algol.csltd.com.ua.simpleBeans.LogBean"/>
+       <bean factory-bean="logBean" factory-method="logMessage" c:message="Example of log message using instance method...">
+              <!--<constructor-arg value="Example of log message using instance method..."/>-->
+       </bean>
+       <bean class="algol.csltd.com.ua.simpleBeans.LogBean" factory-method="staticLogMessage" c:message = "Example of log message using static method...">
+              <!--<constructor-arg value="Example of log message using static method..."/>-->
+       </bean>
+       <bean factory-bean="logBean" factory-method="logMessage" c:message="Let's create now some other beans...">
+              <!--<constructor-arg value="Let's create now some other beans..."/>-->
+       </bean>
        <import resource="instantiation.xml"/>
        <import resource="dependencies.xml"/>
+       <import resource="methodReplacement.xml"/>
 
 </beans>

@@ -8,8 +8,13 @@ public class LogBean extends SampleParent {
         log.debug(message);
         return null;
     }
-    public static LogBean logMessage2(String message) {
+    public static String staticLogMessage(String message) {
         log.debug(message);
+        return null;
+    }
+
+    public String logObject(String message, Object object) {
+        log.debug(message + " " + object.toString());
         return null;
     }
 }

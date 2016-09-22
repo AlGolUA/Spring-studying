@@ -3,11 +3,10 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
        <!--Two beans from one class instantiated with default constructor -->
-       <bean id="logBean" class="algol.csltd.com.ua.simpleBeans.LogBean"/>
-       <bean factory-bean="logBean" factory-method="logMessage">
-              <constructor-arg name="message" value="Let's create some beans..."/>
-       </bean>
        <bean id="simpleBean1" class="algol.csltd.com.ua.simpleBeans.SimpleBean" />
+       <bean factory-bean="logBean" factory-method="logMessage">
+              <constructor-arg value="simpleBean1 initialized..."/>
+       </bean>
        <bean id="simpleBean2" class="algol.csltd.com.ua.simpleBeans.SimpleBean">
               <property name="adminEmails">
                      <props>
@@ -36,20 +35,20 @@
               </property>
        </bean>
        <bean factory-bean="logBean" factory-method="logMessage">
-              <constructor-arg name="message" value="simpleBean1 and simpleBean2 initialized..."/>
+              <constructor-arg value="simpleBean2 initialized..."/>
        </bean>
        <!-- Bean, instantiated with constructor with argument -->
        <bean id="instantiatingWithConstructorBean" class="algol.csltd.com.ua.instantiation.InstantiatingWithConstructorBean">
-              <constructor-arg name="s" type="java.lang.String" value="Hello World"/>
+              <constructor-arg value="Hello World"/>
        </bean>
        <bean factory-bean="logBean" factory-method="logMessage">
-              <constructor-arg name="message" value="instantiatingWithConstructorBean initialized..."/>
+              <constructor-arg value="instantiatingWithConstructorBean initialized..."/>
        </bean>
        <!--Beans, instantiated with static factory-->
        <bean id="instantiationWithStaticFactoryMethod" class="algol.csltd.com.ua.instantiation.InstantiationWithStaticFactoryMethod" factory-method="createInstance"/>
        <bean id="arrayListByStaticFactoryMethod" class="algol.csltd.com.ua.instantiation.InstantiationWithStaticFactoryMethod" factory-method="createArrayList"/>
        <bean factory-bean="logBean" factory-method="logMessage">
-              <constructor-arg name="message" value="instantiationWithStaticFactoryMethod and arrayListByStaticFactoryMethod initialized..."/>
+              <constructor-arg value="instantiationWithStaticFactoryMethod and arrayListByStaticFactoryMethod initialized..."/>
        </bean>
        <!-- Beans, instantiated using instance factory -->
        <bean id="serviceLocator" class="algol.csltd.com.ua.instantiation.DefaultServiceLocator"/>
@@ -57,7 +56,7 @@
        <bean id="sampleParentBeanInstance" factory-bean="serviceLocator" factory-method="createSampleParentBean"/>
        <bean id="sampleString" factory-bean="serviceLocator" factory-method="createSampleString"/>
        <bean factory-bean="logBean" factory-method="logMessage">
-              <constructor-arg name="message" value="serviceLocator and produced beans initialized..."/>
+              <constructor-arg value="serviceLocator and produced beans initialized..."/>
        </bean>
 
 </beans>

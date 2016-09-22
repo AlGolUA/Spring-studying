@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="myValueCalculator" class="algol.csltd.com.ua.methodReplacement.MyValueCalculator"/>
+    <bean factory-bean="logBean" factory-method="logObject">
+        <constructor-arg value="myValueCalculator:"/>
+        <constructor-arg ref="myValueCalculator"/>
+    </bean>
+    <bean id="replacedValueCalculator" class="algol.csltd.com.ua.methodReplacement.ReplacedValueCalculator"/>
+    <bean id="myValueCalculator2" class="algol.csltd.com.ua.methodReplacement.MyValueCalculator">
+        <replaced-method name="getValue" replacer="replacedValueCalculator"/>
+    </bean>
+    <bean factory-bean="logBean" factory-method="logObject">
+        <constructor-arg value="myValueCalculator2:"/>
+        <constructor-arg ref="myValueCalculator2"/>
+    </bean>
+
+</beans>
