@@ -29,4 +29,8 @@ public class SimpleBean extends SampleParent {
     public void setSomeSet(java.util.Set set) {
         log.debug("setSomeSet: " + set);
     }
+
+    public void init() {
+        log.debug("init-method");
+    }
 }

@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
        <!--Two beans from one class instantiated with default constructor -->
-       <bean id="simpleBean1" class="algol.csltd.com.ua.simpleBeans.SimpleBean" />
+       <bean id="simpleBean1" class="algol.csltd.com.ua.simpleBeans.SimpleBean" init-method="init"/>
        <bean id="simpleBean2" class="algol.csltd.com.ua.simpleBeans.SimpleBean">
               <property name="adminEmails">
                      <props>
@@ -36,7 +36,7 @@
        </bean>
        <!-- Bean, instantioated with constructor with argument -->
        <bean id="instantiatingWithConstructorBean" class="algol.csltd.com.ua.instantiation.InstantiatingWithConstructorBean">
-              <constructor-arg name="s" type="java.lang.String" value="Hello World"/>
+              <constructor-arg type="java.lang.String" value="Hello World"/>
        </bean>
        <!--Beans, instantiated with static factory-->
        <bean id="instantiationWithStaticFactoryMethod" class="algol.csltd.com.ua.instantiation.InstantiationWithStaticFactoryMethod" factory-method="createInstance"/>
@@ -60,8 +60,8 @@
        <bean id="yetAnotherBean" class="algol.csltd.com.ua.dependencies.YetAnotherBean"/>
        <!--Combination of setter-based and constructor-based dependencies injection-->
        <bean id="exampleBean2" class="algol.csltd.com.ua.dependencies.ExampleBean">
-              <constructor-arg name="beanOne" ref="anotherExampleBean"/>
-              <constructor-arg name="integerProperty" value="123"/>
+              <constructor-arg ref="anotherExampleBean"/>
+              <constructor-arg value="123"/>
               <!--Inner bean-->
               <property name="beanTwo">
                      <bean class="algol.csltd.com.ua.dependencies.YetAnotherBean"/>
@@ -73,5 +73,7 @@
               <constructor-arg ref="yetAnotherBean"/>
               <constructor-arg value="123"/>
        </bean>
+       <bean class="algol.csltd.com.ua.simpleBeans.MyBeanPostProcessor"/>
+       <bean class="algol.csltd.com.ua.simpleBeans.MyBeanFactoryPostProcessor"/>
 
 </beans>
