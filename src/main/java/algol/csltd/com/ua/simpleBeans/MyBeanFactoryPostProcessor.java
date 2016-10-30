@@ -9,7 +9,7 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 /**
  * Created by admin on 09.10.2016.
  */
-public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
+public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor { // look at PropertyResourceConfigurer as example
     private static Log log = LogFactory.getLog(MyBeanFactoryPostProcessor.class);
 
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {

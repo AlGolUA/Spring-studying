@@ -12,12 +12,12 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
     private static Log log = LogFactory.getLog(MyBeanPostProcessor.class);
 
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        log.info("MyBeanPostProcessor.postProcessBeforeInitialization(" + beanName + "," + bean.getClass().getCanonicalName() + ")");
+        log.info("MyBeanPostProcessor.postProcessBeforeInitialization(" + beanName + " of " + bean.getClass().getCanonicalName() + ")");
         return bean;
     }
 
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        log.info("MyBeanPostProcessor.postProcessAfterInitialization(" + beanName + "," + bean.getClass().getCanonicalName() + ")");
+        log.info("MyBeanPostProcessor.postProcessAfterInitialization(" + beanName + " of " + bean.getClass().getCanonicalName() + ")");
         return bean;
     }
 }

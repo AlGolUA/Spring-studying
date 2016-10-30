@@ -1,9 +1,15 @@
 package algol.csltd.com.ua.simpleBeans;
 
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 /**
  * Created by alik on 17.08.2016.
  */
-public class SimpleBean extends SampleParent {
+public class SimpleBean extends SampleParent implements InitializingBean, DisposableBean {
     static {
         log.debug("static in SimpleBean");
     }
@@ -30,7 +36,30 @@ public class SimpleBean extends SampleParent {
         log.debug("setSomeSet: " + set);
     }
 
-    public void init() {
+    public void initMethod() {
         log.debug("init-method");
     }
+
+    @PostConstruct
+    public void postConstruct() {
+        log.debug("postConstruct");
+    }
+
+    @PreDestroy
+    public void preDestroy() {
+        log.debug("preDestroy");
+    }
+
+    public void afterPropertiesSet() throws Exception {
+        log.debug("InitializingBean.afterPropertiesSet");
+    }
+
+    public void destroy() throws Exception {
+        log.debug("DisposableBean.destroy");
+    }
+
+    public void destroyMethod() throws Exception {
+        log.debug("destroyMethod");
+    }
+
 }
