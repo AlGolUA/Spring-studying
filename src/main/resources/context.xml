@@ -7,6 +7,7 @@
        <context:component-scan base-package="algol.csltd.com.ua"/>
        <!--Two beans from one class instantiated with default constructor -->
        <bean id="simpleBean1" class="algol.csltd.com.ua.simpleBeans.SimpleBean" init-method="initMethod" destroy-method="destroyMethod"/>
+       <bean id="simpleBean2" class="algol.csltd.com.ua.simpleBeans.SimpleBean" init-method="initMethod" destroy-method="destroyMethod"/>
        <!--<bean id="simpleBean2" class="algol.csltd.com.ua.simpleBeans.SimpleBean">-->
               <!--<property name="adminEmails">-->
                      <!--<props>-->

@@ -42,12 +42,12 @@ public class SimpleBean extends SampleParent implements InitializingBean, Dispos
 
     @PostConstruct
     public void postConstruct() {
-        log.debug("postConstruct");
+        log.debug("SimpleBean.postConstruct()");
     }
 
     @PreDestroy
     public void preDestroy() {
-        log.debug("preDestroy");
+        log.debug("SimpleBean.preDestroy()");
     }
 
     public void afterPropertiesSet() throws Exception {
