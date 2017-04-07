@@ -1,6 +1,8 @@
 package algol.web;
 
 import junit.framework.TestCase;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.junit.Test;
@@ -14,10 +16,12 @@ import java.io.IOException;
  * Created by admin on 05.04.2017.
  */
 public class Servlet1Test extends TestCase {
+    private Log log = LogFactory.getLog(this.getClass());
+
 
     @Test
     public void testDoSomething() throws Exception {
-        System.out.println("testDoSomething");
+        System.out.println("Servlet1Test.testDoSomething");
         request.addParameter("username", "scott");
         request.addParameter("password", "tiger");
         servlet.doGet(request, response);
@@ -25,30 +29,21 @@ public class Servlet1Test extends TestCase {
     }
     @Test
     public void testDoGet() throws Exception {
-        System.out.println("Testing doGet...");
+        log.info("Servlet1Test.Testing doGet...");
         servlet.doGet(request, response);
-        System.out.println(response.getContentAsString());
+        System.out.println("response: " + response.getContentAsString());
     }
 
-    private Servlet2 servlet;
+    private Servlet1 servlet;
     private MockHttpServletRequest request;
     private MockHttpServletResponse response;
 
     @Before
     public void setUp() {
-        System.out.println("setUp");
-        servlet = new Servlet2();
+        log.info("Servlet1Test.setUp");
+        servlet = new Servlet1();
         request = new MockHttpServletRequest();
         response = new MockHttpServletResponse();
     }
 
-//    @Test
-//    public void correctUsernameInRequest() throws ServletException, IOException {
-//        System.out.println("correctUsernameInRequest");
-//        request.addParameter("username", "scott");
-//        request.addParameter("password", "tiger");
-//        servlet.doGet(request, response);
-//        assertEquals("text/html", response.getContentType());
-//
-//    }
 }

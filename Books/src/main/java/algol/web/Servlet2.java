@@ -15,11 +15,12 @@ public class Servlet2 extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        javax.servlet.jsp.JspPage x;
+        System.out.println("Servlet2.doGet");
+        response.setContentType("text/html");
         String name = "Alik";
         request.setAttribute("nname", name);
         request.setAttribute("BIGNAME", name.toUpperCase());
-        getServletContext().getRequestDispatcher("/mypage.jsp").forward(request, response);
+        request.getRequestDispatcher("mypage.jsp").forward(request, response);
 //        response.setContentType("text/html");
 //        response.getWriter().append("<strong>Second Servlet</strong>");
     }
