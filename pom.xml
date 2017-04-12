@@ -29,15 +29,17 @@
                     <version>${slf4j-version}</version>
                 </dependency>
                 <dependency>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                    <version>${log4j-version}</version>
+                </dependency>
+                <dependency>
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-log4j12</artifactId>
                     <version>${slf4j-version}</version>
                     <scope>runtime</scope>
                 </dependency>
             </dependencies>
-            <properties>
-                <profile>SLF4J-LOG4J</profile>
-            </properties>
         </profile>
         <profile>
             <id>SLF4J-Simple</id>
@@ -120,11 +122,27 @@
                 </dependency>
             </dependencies>
         </profile>
+        <profile>
+            <id>WO_SLF4J</id>
+            <dependencies>
+                <dependency>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging-api</artifactId>
+                    <version>1.1</version>
+                </dependency>
+                <dependency>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                    <version>${log4j-version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
     </profiles>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <slf4j-version>1.7.7</slf4j-version>
+        <log4j-version>1.2.17</log4j-version>
     </properties>
 
 </project>
