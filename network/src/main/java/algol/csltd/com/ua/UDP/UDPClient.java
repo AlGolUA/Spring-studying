@@ -1,0 +1,49 @@
+package algol.csltd.com.ua.UDP;
+
+import java.net.DatagramPacket;
+import java.net.InetAddress;
+import java.net.MulticastSocket;
+
+/**
+ * Created by admin on 30.04.2017.
+ */
+public class UDPClient {
+    private static InetAddress address;
+    private static byte[] buffer;
+    private static DatagramPacket packet;
+    private static String str;
+    private static MulticastSocket socket;
+
+    public static void main(String arg[]) throws Exception {
+        System.out.println("Ожидание сообщения от сервера");
+        try {
+// Создание объекта MulticastSocket для получения
+// данных от группы, используя номер порта 1502
+            socket = new MulticastSocket(1502);
+            address = InetAddress.getByName("233.0.0.1");
+// Регистрация клиента в группе
+            socket.joinGroup(address);
+            while (true) {
+                buffer = new byte[256];
+                packet = new DatagramPacket(buffer, buffer.length);
+// Получение данных от сервера
+                socket.receive(packet);
+                str = new String(packet.getData()).trim();
+                System.out.println("Получено сообщение: " + str);
+                if ("exit".equals(str)) break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+// Удаление клиента из группы
+                System.out.println("leaveGroup and close");
+                socket.leaveGroup(address);
+// Закрытие сокета
+                socket.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}

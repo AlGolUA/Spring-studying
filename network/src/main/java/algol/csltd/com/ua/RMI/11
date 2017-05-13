@@ -1,0 +1,7 @@
+/* AUTOMATICALLY GENERATED ON Sun Apr 30 20:27:31 EEST 2017*/
+/* DO NOT EDIT */
+
+grant {
+  permission java.sql.SQLPermission "setLog";
+};
+
