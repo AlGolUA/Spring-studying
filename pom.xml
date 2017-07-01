@@ -16,7 +16,7 @@
     </dependencies>
     <profiles>
         <profile>
-            <id>SLF4J-LOG4J</id>
+            <id>SLF4J-LOG4J2</id>
             <dependencies>
                 <dependency>
                     <groupId>org.slf4j</groupId>
@@ -29,15 +29,14 @@
                     <version>${slf4j-version}</version>
                 </dependency>
                 <dependency>
-                    <groupId>log4j</groupId>
-                    <artifactId>log4j</artifactId>
-                    <version>${log4j-version}</version>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-core</artifactId>
+                    <version>${log4j2-version}</version>
                 </dependency>
                 <dependency>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                    <version>${slf4j-version}</version>
-                    <scope>runtime</scope>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-slf4j-impl</artifactId>
+                    <version>${log4j2-version}</version>
                 </dependency>
             </dependencies>
         </profile>
@@ -50,9 +49,14 @@
                     <version>${slf4j-version}</version>
                 </dependency>
                 <dependency>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>log4j-over-slf4j</artifactId>
-                    <version>${slf4j-version}</version>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-core</artifactId>
+                    <version>${log4j2-version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-to-slf4j</artifactId>
+                    <version>${log4j2-version}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.slf4j</groupId>
@@ -79,9 +83,14 @@
                     <version>${slf4j-version}</version>
                 </dependency>
                 <dependency>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>log4j-over-slf4j</artifactId>
-                    <version>${slf4j-version}</version>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-core</artifactId>
+                    <version>${log4j2-version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-to-slf4j</artifactId>
+                    <version>${log4j2-version}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.slf4j</groupId>
@@ -105,9 +114,14 @@
                     <version>${slf4j-version}</version>
                 </dependency>
                 <dependency>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>log4j-over-slf4j</artifactId>
-                    <version>${slf4j-version}</version>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-core</artifactId>
+                    <version>${log4j2-version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-to-slf4j</artifactId>
+                    <version>${log4j2-version}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.slf4j</groupId>
@@ -131,9 +145,9 @@
                     <version>1.1</version>
                 </dependency>
                 <dependency>
-                    <groupId>log4j</groupId>
-                    <artifactId>log4j</artifactId>
-                    <version>${log4j-version}</version>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-core</artifactId>
+                    <version>${log4j2-version}</version>
                 </dependency>
             </dependencies>
         </profile>
@@ -141,8 +155,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <slf4j-version>1.7.7</slf4j-version>
-        <log4j-version>1.2.17</log4j-version>
+        <slf4j-version>1.7.24</slf4j-version>
+        <log4j2-version>2.8.2</log4j2-version>
     </properties>
 
 </project>

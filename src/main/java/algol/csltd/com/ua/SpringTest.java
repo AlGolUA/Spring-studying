@@ -29,16 +29,16 @@ public class SpringTest {
         java.util.logging.Logger.getLogger("").setLevel(java.util.logging.Level.ALL);
 
         java.util.logging.Logger julLogger = java.util.logging.Logger.getLogger(SpringTest.class.getName());
-        julLogger.info("JUL logging...");
-        julLogger.finest("JUL logging...");
+        julLogger.info("JUL logging info...");
+        julLogger.finest("JUL logging trace...");
         org.apache.commons.logging.Log jclLog = org.apache.commons.logging.LogFactory.getLog(SpringTest.class);
-        jclLog.info("JCL logging...");
-        jclLog.trace("JCL logging...");
-        org.apache.log4j.Logger log4jlogger = org.apache.log4j.Logger.getLogger(SpringTest.class);
-        log4jlogger.info("Log4J logging...");
-        log4jlogger.trace("Log4J logging...");
+        jclLog.info("JCL logging info...");
+        jclLog.trace("JCL logging trace...");
+        org.apache.logging.log4j.Logger log4jlogger = org.apache.logging.log4j.LogManager.getLogger(SpringTest.class);
+        log4jlogger.info("Log4J logging info...");
+        log4jlogger.trace("Log4J logging tracer...");
         org.slf4j.Logger slf4jLogger = org.slf4j.LoggerFactory.getLogger(SpringTest.class);
-        slf4jLogger.info("SLF4J logging...");
-        slf4jLogger.trace("SLF4J logging...");
+        slf4jLogger.info("SLF4J logging info...");
+        slf4jLogger.trace("SLF4J logging trace...");
     }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Сonfiguration status="WARN" monitorInterval="300">
+    <!-- Править можно только содержание Property -->
+    <Properties>
+        <!--<Property name="filePath">/IIB/log/</Property>-->
+        <!--<Property name="fileLevel">debug</Property>-->
+        <Property name="rootLevel">error</Property>
+        <Property name="ownLevel">trace</Property>
+    </Properties>
+    <Appenders>
+        <!--<RollingFile name="file" fileName="${filePath}IntegrationService.log" filePattern="${filePath}IntegrationService_%d{ddMMyyyy}.log">-->
+            <!--<PatternLayout charset="UTF-8" pattern="LOG4J2 [%t] %p %c %x - %m%n"/>-->
+            <!--<Policies>-->
+                <!--<TimeBasedTriggeringPolicy interval="1"/>-->
+            <!--</Policies>-->
+        <!--</RollingFile>-->
+
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout charset="UTF-8" pattern="LOG4J2 [%d{dd-MM-yyyy, HH:mm:ss.SSS}] [%t] %p %c.%M %x - %m%ex%n"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <Root level="all">
+            <AppenderRef ref="console" level="${rootLevel}"/>
+        </Root>
+        <Logger name="algol">
+            <AppenderRef ref="console" level="${ownLevel}"/>
+        </Logger>
+    </Loggers>
+</Сonfiguration>
